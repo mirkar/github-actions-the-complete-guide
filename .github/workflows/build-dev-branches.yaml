@@ -52,4 +52,4 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-          working-directory: ./aob-ew-react-demo
+        working-directory: ./aob-ew-react-demo
