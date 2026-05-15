@@ -12,8 +12,8 @@ permissions:
   checks: write
   contents: read # Required to checkout the repository code
 
-env:
-  PROJECT_DIRECTORY: aob-ew-react-demo
+# env:
+#   PROJECT_DIRECTORY: aob-ew-react-demo
 
 jobs:
   build:
@@ -61,15 +61,15 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./${{ env.PROJECT_DIRECTORY }}
+        working-directory: ./${{ vars.PROJECT_DIRECTORY }}
 
       - name: Run Unit Tests
         run: npm run test:once
-        working-directory: ./${{ env.PROJECT_DIRECTORY }}
+        working-directory: ./${{ vars.PROJECT_DIRECTORY }}
 
       - name: List files in the coverage directory
         run: ls -la ./coverage
-        working-directory: ./${{ env.PROJECT_DIRECTORY }}
+        working-directory: ./${{ vars.PROJECT_DIRECTORY }}
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
@@ -99,7 +99,7 @@ jobs:
         run: |
           npm run build
           ls -la
-        working-directory: ./${{ env.PROJECT_DIRECTORY }}          
+        working-directory: ./${{ vars.PROJECT_DIRECTORY }}          
               
       # - name: Add Coverage PR Comment
       #   uses: marocchino/sticky-pull-request-comment@v2
