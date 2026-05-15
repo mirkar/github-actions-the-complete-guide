@@ -83,4 +83,5 @@ jobs:
           output: file
 
       - name: Add Coverage PR Comment
-        run: cat code-coverage-results.markdown >> $GITHUB_STEP_SUMMARY                        
+        # Changed extension from .markdown to .md
+        run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY                      
