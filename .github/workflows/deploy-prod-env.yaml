@@ -1,8 +1,5 @@
 name: Deploy To Production
 on:
-  push:
-    branches: 
-      - 'main'
   workflow_dispatch:
 jobs:
   build:
