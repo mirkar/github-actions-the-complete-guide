@@ -12,6 +12,8 @@ permissions:
   checks: write
   contents: read # Required to checkout the repository code
 
+env:
+  PROJECT_DIRECTORY: aob-ew-react-demo
 
 jobs:
   build:
