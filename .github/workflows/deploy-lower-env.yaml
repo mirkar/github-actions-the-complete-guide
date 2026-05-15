@@ -1,4 +1,5 @@
 name: Deploy To Lower Environment
+run-name: Deploying to ${{ inputs.environment }}
 on:
   workflow_dispatch:
     inputs:
