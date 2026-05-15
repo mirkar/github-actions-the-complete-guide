@@ -24,12 +24,17 @@ jobs:
       # - name: Skip build if it's the first push
       #   if: steps.check_first_push.outputs.is_first_push == 'true'
       #   run: echo "Skipping build for the first push (branch creation)."
-      - name: Debug
+      # - name: Debug
+      #   run: |
+      #     echo "Before: ${{ github.event.before }}"
+      #     echo "After: ${{ github.event.after }}"
+      #     echo "Ref: ${{ github.ref }}"
+      #     echo "Repository: ${{ github.repository }}"
+
+      - name: Debug - List files to verify pnpm-lock.yaml exists
         run: |
-          echo "Before: ${{ github.event.before }}"
-          echo "After: ${{ github.event.after }}"
-          echo "Ref: ${{ github.ref }}"
-          echo "Repository: ${{ github.repository }}"
+          echo "Files in repo:"
+          
       - name: Continue with build if it's not the first push
         if: steps.check_first_push.outputs.is_first_push == 'false'
       - name: Checkout code
