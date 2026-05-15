@@ -1,6 +1,12 @@
 name: Deploy To Lower Environment
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        description: 'Target environment'
+        type: choice
+        options: [SBX, ADT]
 jobs:
   build:
     runs-on: ubuntu-latest
