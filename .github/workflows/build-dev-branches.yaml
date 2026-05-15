@@ -57,3 +57,7 @@ jobs:
       - name: Run Unit Tests
         run: npm run test:once
         working-directory: ./aob-ew-react-demo
+
+      - name: List files in the project directory
+        run: ls -la
+        working-directory: ./aob-ew-react-demo      
