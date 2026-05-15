@@ -53,3 +53,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
         working-directory: ./aob-ew-react-demo
+
+      - name: Run Unit Tests
+        run: npm run test:once
+        working-directory: ./aob-ew-react-demo
