@@ -17,6 +17,7 @@ permissions:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -56,4 +57,11 @@ jobs:
         run: |
           npm run build
           tree dist
-        working-directory: ./${{ vars.PROJECT_DIRECTORY }}                
+        working-directory: ./${{ vars.PROJECT_DIRECTORY }} 
+
+      - name: Deploy to ${{ inputs.environment }}
+        run: |
+          echo -e "\033[1;33mDeploying to ${{ inputs.environment }} environment...\033[0m"
+          # Add your deployment commands here, e.g., using Azure CLI, AWS CLI, etc.
+          # Example for Azure CLI:
+          # az webapp deploy --name my-app --resource-group my-resource-group --src-path               
