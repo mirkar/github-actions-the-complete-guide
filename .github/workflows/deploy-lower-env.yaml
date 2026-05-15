@@ -7,7 +7,7 @@ on:
         required: true
         description: 'Target environment'
         type: choice
-        options: [SBX, ADT]
+        options: [ADT,QAT,SPT,UAT]
 
 # Global permissions
 permissions:
