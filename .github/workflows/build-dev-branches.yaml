@@ -30,7 +30,10 @@ jobs:
 
       - name: Debug
         run: |
-          echo -e "\033[1;33mGetting Id for Git Repositories security namespace:"
+          echo -e "\033[1;31mError\033[0m"
+          echo -e "\033[1;32mOK\033[0m"
+          echo -e "\033[1;33mThis is a debug step to check the event payload:\033[0m"
+          echo -e "\033[1;33mGetting Id for Git Repositories security namespace:\033[0m"
           echo "Before: ${{ github.event.before }}"
           echo "After: ${{ github.event.after }}"
           echo "Ref: ${{ github.ref }}"
