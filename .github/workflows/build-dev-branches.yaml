@@ -11,6 +11,9 @@ jobs:
     # This condition skips the job if it's the very first push (branch creation)
     if: github.event.before != '0000000000000000000000000000000000000000'  
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./aob-ew-react-demo
     steps:
       # - name: Check if this is the first push (branch creation)
       #   id: check_first_push
@@ -46,3 +49,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
