@@ -88,7 +88,9 @@ jobs:
 
       - name: Check if PR and add comment
         #if: github.event_name == 'pull_request'
-        run: find ./ -name code-coverage-results.md
+        run: |
+          pwd
+          find ./ -name code-coverage-results.md
               
       # - name: Add Coverage PR Comment
       #   uses: marocchino/sticky-pull-request-comment@v2
