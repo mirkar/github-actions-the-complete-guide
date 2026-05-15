@@ -60,4 +60,21 @@ jobs:
 
       - name: List files in the coverage directory
         run: ls -la ./coverage
-        working-directory: ./aob-ew-react-demo      
+        working-directory: ./aob-ew-react-demo
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: always() # Ensures the report is published even if tests fail
+        with:
+          report_paths: '**/junit.xml'
+
+      - name: Code Coverage Summary
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: '**/cobertura-coverage.xml'
+          badge: true
+          format: markdown
+          output: file
+
+      - name: Add Coverage PR Comment
+        run: cat code-coverage-results.markdown >> $GITHUB_STEP_SUMMARY                        
