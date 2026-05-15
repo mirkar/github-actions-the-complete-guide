@@ -8,8 +8,30 @@ on:
   workflow_dispatch:
 jobs:
   build:
+    # This condition skips the job if it's the very first push (branch creation)
+    if: github.event.before != '0000000000000000000000000000000000000000'  
     runs-on: ubuntu-latest
     steps:
+      # - name: Check if this is the first push (branch creation)
+      #   id: check_first_push
+      #   run: |
+      #     if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+      #       echo "This is the first push (branch creation). Skipping build."
+      #       echo "is_first_push=true" >> $GITHUB_OUTPUT
+      #     else
+      #       echo "This is not the first push. Proceeding with build."
+      #       echo "is_first_push=false" >> $GITHUB_OUTPUT
+      # - name: Skip build if it's the first push
+      #   if: steps.check_first_push.outputs.is_first_push == 'true'
+      #   run: echo "Skipping build for the first push (branch creation)."
+      - name: Debug
+        run: |
+          echo "Before: ${{ github.event.before }}"
+          echo "After: ${{ github.event.after }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Repository: ${{ github.repository }}"
+      - name: Continue with build if it's not the first push
+        if: steps.check_first_push.outputs.is_first_push == 'false'
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Node.js
