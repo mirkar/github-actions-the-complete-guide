@@ -6,6 +6,12 @@ on:
       - 'feature/**'
       - 'bugfix/**'
   workflow_dispatch:
+
+# Global permissions
+permissions:
+  checks: write
+  contents: read # Required to checkout the repository code
+
 jobs:
   build:
     # This condition skips the job if it's the very first push (branch creation)
