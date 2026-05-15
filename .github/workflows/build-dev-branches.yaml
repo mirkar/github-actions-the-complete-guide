@@ -58,6 +58,6 @@ jobs:
         run: npm run test:once
         working-directory: ./aob-ew-react-demo
 
-      - name: List files in the project directory
-        run: ls -la
+      - name: List files in the coverage directory
+        run: ls -la ./coverage
         working-directory: ./aob-ew-react-demo      
