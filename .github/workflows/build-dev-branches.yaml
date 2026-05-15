@@ -94,7 +94,7 @@ jobs:
 
       - name: Build Application
         run: |
-          npm build
+          npm run build
           ls -la
         working-directory: ./aob-ew-react-demo          
               
