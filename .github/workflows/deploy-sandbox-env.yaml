@@ -1,8 +1,5 @@
 name: Deploy To Sandbox Environment
 on:
-  push:
-    branches: 
-      - 'main'
   workflow_dispatch:
 jobs:
   build:
