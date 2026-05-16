@@ -65,27 +65,27 @@ jobs:
       #       -t ${{ vars.APPLICATION_NAME }}-  --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md              
       #     fi
 
-      # - name: Tag version locally
-      #   run: |
-      #     echo "Fetching all tags from remote repository..."
-      #     git fetch --tags
+      - name: Tag version locally
+        run: |
+          echo "Fetching all tags from remote repository..."
+          git fetch --tags
 
-      #     echo "Current tags in the repository:"
-      #     git tag --list
+          echo "Current tags in the repository:"
+          git tag --list
 
-      #     LATEST_COMPONENT_TAG=$(git --no-pager tag --sort=-v:refname --merged $(git rev-parse HEAD) -l "${{ vars.PROJECT_DIRECTORY }}-*.*.*"  | head -n 1)
-      #     if [[ -z "$LATEST_COMPONENT_TAG" ]] ; then 
-      #       echo "No existing tags found. Executing first release." ;
-      #       NEW_TAG=$(commit-and-tag-version --dry-run --first-release -t ${{ vars.APPLICATION_NAME }}- \
-      #        --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md | tail -n 1)
-      #     else
-      #       echo "Latest component tag: $LATEST_COMPONENT_TAG" ;
-      #       NEW_TAG=$(commit-and-tag-version --dry-run --packageFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
-      #       --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
-      #       --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package-lock.json \
-      #       -t ${{ vars.APPLICATION_NAME }}-  --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md | tail -n 1)             
-      #     fi
-      #     echo "New tag to be created: $NEW_TAG"
+          LATEST_COMPONENT_TAG=$(git --no-pager tag --sort=-v:refname --merged $(git rev-parse HEAD) -l "${{ vars.PROJECT_DIRECTORY }}-*.*.*"  | head -n 1)
+          if [[ -z "$LATEST_COMPONENT_TAG" ]] ; then 
+            echo "No existing tags found. Executing first release." ;
+            NEW_TAG=$(commit-and-tag-version --dry-run --first-release -t ${{ vars.APPLICATION_NAME }}- \
+             --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md | tail -n 1)
+          else
+            echo "Latest component tag: $LATEST_COMPONENT_TAG" ;
+            NEW_TAG=$(commit-and-tag-version --dry-run --packageFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
+            --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
+            --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package-lock.json \
+            -t ${{ vars.APPLICATION_NAME }}-  --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md | tail -n 1)             
+          fi
+          echo "New tag to be created: $NEW_TAG"
 
       - name: See details
         run: |
