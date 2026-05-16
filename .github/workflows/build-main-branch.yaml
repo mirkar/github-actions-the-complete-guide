@@ -33,7 +33,6 @@ jobs:
           else
             echo "LATEST_COMPONENT_TAG: $LATEST_COMPONENT_TAG" ;
           fi
-        displayName: "Tag version locally"
 
 
       # At this stage, the code has successfully passed the build, security scan, and unit tests.
