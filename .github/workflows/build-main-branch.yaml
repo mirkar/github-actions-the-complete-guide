@@ -62,5 +62,5 @@ jobs:
             commit-and-tag-version --dry-run --packageFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
             --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
             --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package-lock.json \
-            -t ${{ vars.PROJECT_DIRECTORY }}/   --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md              
+            -t ${{ vars.PROJECT_DIRECTORY }}-   --infile "$GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md"              
           fi
