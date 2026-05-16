@@ -73,6 +73,10 @@ jobs:
           echo "Current tags in the repository:"
           git tag --list
 
+          npm install -g commit-and-tag-version@12.x
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
           LATEST_COMPONENT_TAG=$(git --no-pager tag --sort=-v:refname --merged $(git rev-parse HEAD) -l "${{ vars.PROJECT_DIRECTORY }}-*.*.*"  | head -n 1)
           if [[ -z "$LATEST_COMPONENT_TAG" ]] ; then 
             echo "No existing tags found. Executing first release." ;
