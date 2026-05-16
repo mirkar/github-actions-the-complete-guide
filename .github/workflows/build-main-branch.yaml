@@ -97,3 +97,10 @@ jobs:
           echo "Current tags in the repository:"
           git tag --list
           cat $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md
+
+      - name: Submit tag to remote repository
+        run: |
+          git describe --tags --abbrev=0
+          tagName=$(git describe --tags --abbrev=0)
+          versionNumber="${tagName##*-}"
+          echo "versionNumber $versionNumber"
