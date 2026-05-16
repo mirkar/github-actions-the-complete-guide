@@ -64,6 +64,7 @@ jobs:
             --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package-lock.json \
             -t ${{ vars.APPLICATION_NAME }}-  --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md              
           fi
+        working-directory: $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}
 
       # - name: Tag version locally
       #   run: |
