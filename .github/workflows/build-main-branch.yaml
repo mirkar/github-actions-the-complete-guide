@@ -56,10 +56,10 @@ jobs:
           LATEST_COMPONENT_TAG=$(git --no-pager tag --sort=-v:refname --merged $(git rev-parse HEAD) -l "${{ vars.PROJECT_DIRECTORY }}-*.*.*"  | head -n 1)
           if [[ -z "$LATEST_COMPONENT_TAG" ]] ; then 
             echo "LATEST_COMPONENT_TAG tag doesn't exist. Executing first release" ;
-            commit-and-tag-version --dry-run --first-release -t ${{ vars.APPLICATION_NAME }}- \
+            commit-and-tag-version --first-release -t ${{ vars.APPLICATION_NAME }}- \
              --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md
           else
-            commit-and-tag-version --dry-run --packageFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
+            commit-and-tag-version --packageFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
             --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package.json \
             --bumpFiles $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/package-lock.json \
             -t ${{ vars.APPLICATION_NAME }}-  --infile $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md              
@@ -95,3 +95,4 @@ jobs:
         run: |
           echo "Current tags in the repository:"
           git tag --list
+          cat $GITHUB_WORKSPACE/${{ vars.PROJECT_DIRECTORY }}/CHANGELOG.md
