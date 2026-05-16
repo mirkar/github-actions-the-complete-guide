@@ -61,6 +61,7 @@
         }
     ],
     "releaseCommitMessageFormat": "chore(release): {{currentTag}} [skip ci]",
-    "compareUrlFormat": "https://dev.azure.com/CostcoWholesale/EngineerWorkbench/_git/AOB-EW-React-Demo/branchCompare?baseVersion=GT{{previousTag}}&targetVersion=GT{{currentTag}}",
-    "commitUrlFormat": "https://dev.azure.com/CostcoWholesale/EngineerWorkbench/_git/AOB-EW-React-Demo/commit/{{hash}}"
+    "commitUrlFormat": "https://github.com/mirkar/github-actions-the-complete-guide/commit/{{hash}}",
+    "compareUrlFormat": "https://github.com/mirkar/github-actions-the-complete-guide/compare/{{previousTag}}...{{currentTag}}",
+    "issueUrlFormat": "https://github.com/mirkar/github-actions-the-complete-guide/issues/{{id}}"
 }
