@@ -102,6 +102,7 @@ jobs:
         run: |
           git describe --tags --abbrev=0
           tagName=$(git describe --tags --abbrev=0)
+          git push origin HEAD:main $tagName
           versionNumber="${tagName##*-}"
           echo "versionNumber $versionNumber"
           echo "### Build Version: $versionNumber 🚀" >> $GITHUB_STEP_SUMMARY
