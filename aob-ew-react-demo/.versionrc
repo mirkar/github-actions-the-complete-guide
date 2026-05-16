@@ -60,5 +60,7 @@
             "section": "Reverts"
         }
     ],
-    "releaseCommitMessageFormat": "chore(release): {{currentTag}} [skip ci]"
+    "releaseCommitMessageFormat": "chore(release): {{currentTag}} [skip ci]",
+    "linkCompare": false,
+    "linkReferences": false
 }
