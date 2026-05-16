@@ -21,18 +21,18 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Test tagging logic
-        run: |
-          npm install -g commit-and-tag-version@12.x
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      # - name: Test tagging logic
+      #   run: |
+      #     npm install -g commit-and-tag-version@12.x
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          LATEST_COMPONENT_TAG=$(git --no-pager tag --sort=-v:refname --merged $(git rev-parse HEAD) -l "${{ vars.PROJECT_DIRECTORY }}/*.*.*"  | head -n 1)
-          if [[ -z "$LATEST_COMPONENT_TAG" ]] ; then 
-            echo "LATEST_COMPONENT_TAG tag doesn't exist. Executing first release" ;
-          else
-            echo "LATEST_COMPONENT_TAG: $LATEST_COMPONENT_TAG" ;
-          fi
+      #     LATEST_COMPONENT_TAG=$(git --no-pager tag --sort=-v:refname --merged $(git rev-parse HEAD) -l "${{ vars.PROJECT_DIRECTORY }}/*.*.*"  | head -n 1)
+      #     if [[ -z "$LATEST_COMPONENT_TAG" ]] ; then 
+      #       echo "LATEST_COMPONENT_TAG tag doesn't exist. Executing first release" ;
+      #     else
+      #       echo "LATEST_COMPONENT_TAG: $LATEST_COMPONENT_TAG" ;
+      #     fi
 
 
       # At this stage, the code has successfully passed the build, security scan, and unit tests.
@@ -47,20 +47,19 @@ jobs:
 
       # Release tag will be incremented based on the commits.  Generally the patch version will be incremented.
       # however for features the minor version is incremented.
-      # - name: Tag version locally
-      #   run: |
-      #     npm install -g commit-and-tag-version@12.x
-      #     git config user.name "github-actions[bot]"
-      #     git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Tag version locally
+        run: |
+          npm install -g commit-and-tag-version@12.x
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      #     LATEST_COMPONENT_TAG=$(git --no-pager tag --sort=-v:refname --merged $(git rev-parse HEAD) -l "${{ vars.PROJECT_DIRECTORY }}/*.*.*"  | head -n 1)
-      #     if [[ -z "$LATEST_COMPONENT_TAG" ]] ; then 
-      #       echo "LATEST_COMPONENT_TAG tag doesn't exist. Executing first release" ;
-      #       commit-and-tag-version --dry-run --first-release -t ${{ vars.PROJECT_DIRECTORY }}/ --infile $(Build.SourcesDirectory)/$(buildProjectName)/CHANGELOG.md
-      #     else
-      #       commit-and-tag-version --dry-run --packageFiles $(Build.SourcesDirectory)/$(buildProjectName)/package.json \
-      #       --bumpFiles $(Build.SourcesDirectory)/$(buildProjectName)/package.json \
-      #       --bumpFiles $(Build.SourcesDirectory)/$(buildProjectName)/package-lock.json \
-      #       -t ${{ vars.PROJECT_DIRECTORY }}/   --infile $(Build.SourcesDirectory)/$(buildProjectName)/CHANGELOG.md              
-      #     fi
-      #   displayName: "Tag version locally"
+          LATEST_COMPONENT_TAG=$(git --no-pager tag --sort=-v:refname --merged $(git rev-parse HEAD) -l "${{ vars.PROJECT_DIRECTORY }}/*.*.*"  | head -n 1)
+          if [[ -z "$LATEST_COMPONENT_TAG" ]] ; then 
+            echo "LATEST_COMPONENT_TAG tag doesn't exist. Executing first release" ;
+            commit-and-tag-version --dry-run --first-release -t ${{ vars.PROJECT_DIRECTORY }}/ --infile $(Build.SourcesDirectory)/$(buildProjectName)/CHANGELOG.md
+          else
+            commit-and-tag-version --dry-run --packageFiles $(Build.SourcesDirectory)/$(buildProjectName)/package.json \
+            --bumpFiles $(Build.SourcesDirectory)/$(buildProjectName)/package.json \
+            --bumpFiles $(Build.SourcesDirectory)/$(buildProjectName)/package-lock.json \
+            -t ${{ vars.PROJECT_DIRECTORY }}/   --infile $(Build.SourcesDirectory)/$(buildProjectName)/CHANGELOG.md              
+          fi
