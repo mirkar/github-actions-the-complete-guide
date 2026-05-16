@@ -15,9 +15,12 @@ if (!fs.existsSync(changelogPath)) {
 
 const input = fs.readFileSync(changelogPath, 'utf8');
 
-// Strip markdown link wrappers while keeping visible label text.
-// Example: [#7](https://...) -> #7, [ba9ed7e](https://...) -> ba9ed7e
-const output = input.replace(/(?<!!)\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g, '$1');
+// Strip only wrapped issue references while keeping visible issue labels.
+// Example: ([#7](https://.../issues/7)) -> #7
+const output = input.replace(
+  /\(\[\s*#(\d+)\s*\]\(https?:\/\/[^\s)]+\/issues\/\1\)\)/g,
+  '#$1',
+);
 
 if (output !== input) {
   fs.writeFileSync(changelogPath, output, 'utf8');
