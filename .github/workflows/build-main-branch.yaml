@@ -87,7 +87,7 @@ jobs:
       #     fi
       #     echo "New tag to be created: $NEW_TAG"
 
-        - name: See details
-        run: |
-          echo "Current tags in the repository:"
-          git tag --list
+        # - name: See details
+        # run: |
+        #   echo "Current tags in the repository:"
+        #   git tag --list
