@@ -5,6 +5,11 @@ on:
   #     - 'main'
   workflow_dispatch:
 
+# Global permissions
+permissions:
+  checks: write
+  contents: write # Required to checkout the repository code
+
 jobs:
   build:
     runs-on: ubuntu-latest
